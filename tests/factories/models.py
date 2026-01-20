@@ -9,4 +9,6 @@ class UserMother(ModelFactory[User]):
 
     @classmethod
     def password(cls) -> str:
-        return cls.__faker__.password(length=12, special_chars=False)
+        return cls.__faker__.password(
+            length=12, special_chars=False, upper_case=True, lower_case=True
+        )
