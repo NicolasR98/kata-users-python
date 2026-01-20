@@ -11,3 +11,6 @@ wheels/
 
 # Lock
 uv.lock
+
+# Settings
+.vscode
