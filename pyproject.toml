@@ -15,10 +15,11 @@ build-backend = "hatchling.build"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "faker>=30.8.2",
-    "polyfactory>=2.17.0",
+    "polyfactory==2.17.0",
+    "pytest-asyncio>=1.3.0",
     "pytest-cov>=6.0.0",
     "pytest>=8.3.3",
     "ruff>=0.7.0",
