@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 
 from kata_users_python.domain.users.entities import User
 from kata_users_python.domain.users.errors import (
@@ -28,7 +28,7 @@ class CreateUserUseCase:
         self.user_repository = user_repository
 
     async def __call__(self, input_data: CreateUserInput) -> User:
-        user = User.model_validate(input_data)
+        user = User.model_validate(asdict(input_data))
 
         email_domain_already_exists = await self.user_repository.get_by_email_domain(
             email=user.email
