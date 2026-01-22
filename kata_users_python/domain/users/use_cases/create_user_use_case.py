@@ -30,17 +30,17 @@ class CreateUserUseCase:
     async def __call__(self, input_data: CreateUserInput) -> User:
         user = User.model_validate(asdict(input_data))
 
+        email_already_exists = await self.user_repository.get_by_email(email=user.email)
+
+        if email_already_exists:
+            raise EmailAlreadyExistsError
+
         email_domain_already_exists = await self.user_repository.get_by_email_domain(
             email=user.email
         )
 
         if email_domain_already_exists:
             raise EmailDomainAlreadyExistsError
-
-        email_already_exists = await self.user_repository.get_by_email(email=user.email)
-
-        if email_already_exists:
-            raise EmailAlreadyExistsError
 
         await self.user_repository.create(user)
 
