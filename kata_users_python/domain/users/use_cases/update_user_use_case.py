@@ -24,13 +24,13 @@ class UpdateUserUseCase:
     def __init__(self, user_repository: UserRepository) -> None:
         self.user_repository = user_repository
 
-    async def __call__(self, user_id: Id, input_data: UpdateUserInput):
+    async def __call__(self, user_id: Id, input_data: UpdateUserInput) -> User:
         existing_user = await self.user_repository.get_by_id(user_id=user_id)
 
         if existing_user is None:
             raise UserNotFoundError
 
-        user = User.model_validate(**existing_user.model_dump(), **asdict(input_data))
+        user = User.model_validate({**existing_user.model_dump(), **asdict(input_data)})
 
         await self.user_repository.update(user=user)
 
