@@ -7,7 +7,7 @@ from kata_users_python.domain.users.vos import Email
 
 
 class MemoryUserRepository(UserRepository):
-    def __init__(self, data: dict[Id, User]) -> None:
+    def __init__(self, data: dict[Id, User] | None = None) -> None:
         self._data: dict[Id, User] = data or {}
 
     async def get_list(self) -> list[User]:
