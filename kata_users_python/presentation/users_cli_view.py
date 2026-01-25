@@ -4,13 +4,18 @@ from kata_users_python.domain.users.entities import User
 
 class UserCLIView(UsersView):
     def __init__(self) -> None:
-        self.presenter = CompositionRoot.provide_presenter(view=self)
+        self.composition_root = CompositionRoot()
+        self.presenter = self.composition_root.provide_presenter(view=self)
 
-    def init(self) -> None:
+    async def init(self) -> None:
         self.presenter.init_screen()
+        await self.show_main_options()
 
     def show_hello_message(self) -> None:
         print("Hello world!")
+
+    def show_exit_message(self) -> None:
+        return print("Bye bye...")
 
     def show_error(self, message: str, error_type: str | None = None) -> None:
         print("Error!")
@@ -21,8 +26,17 @@ class UserCLIView(UsersView):
     def stop_loading(self) -> None:
         print("Stop loading")
 
-    def show_main_options(self) -> None:
-        print("Main options!!!")
+    async def show_main_options(self) -> None:
+        while True:
+            option = input("Select an option:")
+
+            if option == "1":
+                await self.presenter.list_users()
+            if option == "0":
+                break
+
+        self.show_exit_message()
 
     def list_users(self, users: list[User]) -> None:
-        print("Listing users...")
+        for user in users:
+            print(f"- {user.name.root}, {user.email.root}")

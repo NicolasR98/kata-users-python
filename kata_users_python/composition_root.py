@@ -8,11 +8,16 @@ from kata_users_python.domain.users.use_cases import (
 )
 from kata_users_python.presentation.users_presenter import UsersPresenter
 from kata_users_python.presentation.users_view import UsersView
+from tests.factories.models import UserMother
+
+user_mother = UserMother()
 
 
 class CompositionRoot(metaclass=Singleton):
     def __init__(self) -> None:
-        self.user_repository = MemoryUserRepository()
+        self.user_repository = MemoryUserRepository(
+            data={user.id: user for user in user_mother.batch(5)}
+        )
 
     def provide_presenter(self, view: UsersView) -> UsersPresenter:
         return UsersPresenter(
