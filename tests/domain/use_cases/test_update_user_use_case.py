@@ -5,7 +5,7 @@ import pytest
 from kata_users_python.domain.users.errors import UserNotFoundError
 from kata_users_python.domain.users.use_cases import UpdateUserUseCase
 from kata_users_python.domain.users.use_cases.update_user_use_case import (
-    AddressInput,
+    UpdateAddressInput,
     UpdateUserInput,
 )
 from tests.factories.models import UserMother
@@ -14,7 +14,7 @@ from tests.factories.models import UserMother
 @pytest.fixture
 def user_input() -> UpdateUserInput:
     return UpdateUserInput(
-        address=AddressInput(address="street 123", city="ny", zip="1234567"),
+        address=UpdateAddressInput(address="street 123", city="ny", zip="1234567"),
         name="Pepito updated",
         password="2026iker",
     )

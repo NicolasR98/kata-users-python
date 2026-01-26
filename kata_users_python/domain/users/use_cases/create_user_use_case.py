@@ -9,7 +9,7 @@ from kata_users_python.domain.users.repositories import UserRepository
 
 
 @dataclass(frozen=True)
-class AddressInput:
+class CreateAddressInput:
     address: str
     city: str
     zip: str
@@ -17,7 +17,7 @@ class AddressInput:
 
 @dataclass(frozen=True)
 class CreateUserInput:
-    address: AddressInput
+    address: CreateAddressInput
     email: str
     name: str
     password: str

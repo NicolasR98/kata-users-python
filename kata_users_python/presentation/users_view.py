@@ -1,6 +1,12 @@
 from abc import ABC, abstractmethod
 
 from kata_users_python.domain.users.entities import User
+from kata_users_python.domain.users.use_cases.create_user_use_case import (
+    CreateUserInput,
+)
+from kata_users_python.domain.users.use_cases.update_user_use_case import (
+    UpdateUserInput,
+)
 
 
 class UsersView(ABC):
@@ -30,9 +36,21 @@ class UsersView(ABC):
 
     # User actions
     @abstractmethod
-    def list_users(self, users: list[User]) -> None:
+    def render_users(self, users: list[User]) -> None:
         pass
 
-    # @abstractmethod
-    def create_user(self, user: User) -> None:
+    @abstractmethod
+    def render_user(self, user: User) -> None:
+        pass
+
+    @abstractmethod
+    def ask_create_user_input(self) -> CreateUserInput:
+        pass
+
+    @abstractmethod
+    def ask_update_user_input(self) -> UpdateUserInput:
+        pass
+
+    @abstractmethod
+    def ask_input(self) -> str:
         pass

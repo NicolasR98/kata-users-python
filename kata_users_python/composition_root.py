@@ -3,6 +3,7 @@ from kata_users_python.data import MemoryUserRepository
 from kata_users_python.domain.users.use_cases import (
     CreateUserUseCase,
     DeleteUserByEmailUseCase,
+    GetUserByEmailUseCase,
     ListUsersUseCase,
     UpdateUserUseCase,
 )
@@ -30,6 +31,9 @@ class CompositionRoot(metaclass=Singleton):
                 user_repository=self.user_repository
             ),
             delete_user_by_email_use_case=DeleteUserByEmailUseCase(
+                user_repository=self.user_repository
+            ),
+            get_user_by_email_use_case=GetUserByEmailUseCase(
                 user_repository=self.user_repository
             ),
         )

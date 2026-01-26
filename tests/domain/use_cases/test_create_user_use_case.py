@@ -8,7 +8,7 @@ from kata_users_python.domain.users.errors import (
 )
 from kata_users_python.domain.users.use_cases import CreateUserUseCase
 from kata_users_python.domain.users.use_cases.create_user_use_case import (
-    AddressInput,
+    CreateAddressInput,
     CreateUserInput,
 )
 from tests.factories.models import UserMother
@@ -20,7 +20,7 @@ def user_input() -> CreateUserInput:
         email="user@test.com",
         name="Pepito",
         password="iker2026",
-        address=AddressInput(address="street 123", city="ny", zip="1234567"),
+        address=CreateAddressInput(address="street 123", city="ny", zip="1234567"),
     )
 
 
