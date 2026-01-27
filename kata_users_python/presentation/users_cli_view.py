@@ -1,4 +1,4 @@
-from kata_users_python.composition_root import CompositionRoot, UsersView
+from kata_users_python.composition_root import UsersView
 from kata_users_python.domain.users.entities import User
 from kata_users_python.domain.users.use_cases.create_user_use_case import (
     CreateAddressInput,
@@ -11,10 +11,6 @@ from kata_users_python.domain.users.use_cases.update_user_use_case import (
 
 
 class UserCLIView(UsersView):
-    def __init__(self) -> None:
-        self.composition_root = CompositionRoot()
-        self.presenter = self.composition_root.provide_presenter(view=self)
-
     def show_message(self, message: str) -> None:
         print(message)
 
