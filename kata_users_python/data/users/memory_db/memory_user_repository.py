@@ -14,8 +14,8 @@ class MemoryUserRepository(UserRepository):
         return list(self._data.values())
 
     @validate_call
-    async def get_by_id(self, id: Id) -> User | None:
-        return self._data.get(id, None)
+    async def get_by_id(self, user_id: Id) -> User | None:
+        return self._data.get(user_id, None)
 
     @validate_call
     async def get_by_email(self, email: Email) -> User | None:
