@@ -6,7 +6,7 @@ from kata_users_python.domain.users.use_cases import (
     ListUsersUseCase,
     UpdateUserUseCase,
 )
-from kata_users_python.presentation.users_view import UsersView
+from kata_users_python.presentation.users.users_view import UsersView
 
 
 class UsersPresenter:

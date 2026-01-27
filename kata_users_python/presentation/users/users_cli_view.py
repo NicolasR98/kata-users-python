@@ -1,4 +1,3 @@
-from kata_users_python.composition_root import UsersView
 from kata_users_python.domain.users.entities import User
 from kata_users_python.domain.users.use_cases.create_user_use_case import (
     CreateAddressInput,
@@ -8,6 +7,7 @@ from kata_users_python.domain.users.use_cases.update_user_use_case import (
     UpdateAddressInput,
     UpdateUserInput,
 )
+from kata_users_python.presentation.users.users_view import UsersView
 
 
 class UserCLIView(UsersView):

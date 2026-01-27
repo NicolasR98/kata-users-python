@@ -1,9 +1,8 @@
 from unittest.mock import NonCallableMagicMock
 
-from kata_users_python.composition_root import CompositionRoot
+from kata_users_python.composition_root import CompositionRoot, UsersView
 from kata_users_python.domain.users.repositories import UserRepository
-from kata_users_python.presentation.users_presenter import UsersPresenter
-from kata_users_python.presentation.users_view import UsersView
+from kata_users_python.presentation.users.users_presenter import UsersPresenter
 
 
 class TestCompositionRoot:

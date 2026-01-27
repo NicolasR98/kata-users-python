@@ -7,8 +7,8 @@ from kata_users_python.domain.users.use_cases import (
     ListUsersUseCase,
     UpdateUserUseCase,
 )
-from kata_users_python.presentation.users_presenter import UsersPresenter
-from kata_users_python.presentation.users_view import UsersView
+from kata_users_python.presentation.users.users_cli_view import UserCLIView
+from kata_users_python.presentation.users.users_presenter import UsersPresenter
 from tests.factories.models import UserMother
 
 user_mother = UserMother()
@@ -19,10 +19,11 @@ class CompositionRoot(metaclass=Singleton):
         self.user_repository = MemoryUserRepository(
             data={user.id: user for user in user_mother.batch(5)}
         )
+        self.view = UserCLIView()
 
-    def provide_presenter(self, view: UsersView) -> UsersPresenter:
+    def provide_presenter(self) -> UsersPresenter:
         return UsersPresenter(
-            view=view,
+            view=self.view,
             list_users_use_case=ListUsersUseCase(user_repository=self.user_repository),
             create_user_use_case=CreateUserUseCase(
                 user_repository=self.user_repository
