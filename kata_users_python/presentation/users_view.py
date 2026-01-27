@@ -11,6 +11,10 @@ from kata_users_python.domain.users.use_cases.update_user_use_case import (
 
 class UsersView(ABC):
     @abstractmethod
+    def show_message(self, message: str) -> None:
+        pass
+
+    @abstractmethod
     def show_hello_message(self) -> None:
         pass
 

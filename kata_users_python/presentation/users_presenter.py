@@ -42,6 +42,9 @@ class UsersPresenter:
             elif option == "4":
                 await self.handle_update_user()
 
+            elif option == "5":
+                await self.handle_delete_user()
+
             elif option == "0":
                 self.view.show_exit_message()
                 return
@@ -112,9 +115,6 @@ class UsersPresenter:
 
             self.view.start_loading()
 
-            import pdb
-
-            pdb.set_trace()
             user = await self.update_user_use_case(
                 user_id=existing_user.id, input_data=input_data
             )
@@ -122,6 +122,24 @@ class UsersPresenter:
             self.view.stop_loading()
 
             self.view.render_user(user=user)
+
+        except UserNotFoundError:
+            self.view.show_error(message="User not found")
+
+        except Exception as error:
+            self.view.show_error(message=str(error))
+
+    async def handle_delete_user(self) -> None:
+        try:
+            user_email = self.view.ask_input("Email")
+
+            self.view.start_loading()
+
+            await self.delete_user_by_email_use_case(email=user_email)
+
+            self.view.stop_loading()
+
+            self.view.show_message(f"User {user_email} successfully deleted")
 
         except UserNotFoundError:
             self.view.show_error(message="User not found")

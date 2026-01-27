@@ -15,6 +15,9 @@ class UserCLIView(UsersView):
         self.composition_root = CompositionRoot()
         self.presenter = self.composition_root.provide_presenter(view=self)
 
+    def show_message(self, message: str) -> None:
+        print(message)
+
     def show_hello_message(self) -> None:
         print("Hello world!")
 
@@ -22,7 +25,7 @@ class UserCLIView(UsersView):
         return print("Bye bye...")
 
     def show_error(self, message: str, error_type: str | None = None) -> None:
-        print("Error!", message)
+        print("[Error] -", message)
 
     def start_loading(self) -> None:
         print("Loading...")
