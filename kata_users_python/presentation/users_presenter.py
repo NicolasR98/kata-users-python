@@ -46,7 +46,7 @@ class UsersPresenter:
                 await self.handle_delete_user()
 
             elif option == "0":
-                self.view.show_exit_message()
+                self.view.show_message("Bye Bye...")
                 return
 
             else:

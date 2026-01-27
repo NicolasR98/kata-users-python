@@ -15,14 +15,6 @@ class UsersView(ABC):
         pass
 
     @abstractmethod
-    def show_hello_message(self) -> None:
-        pass
-
-    @abstractmethod
-    def show_exit_message(self) -> None:
-        pass
-
-    @abstractmethod
     def show_error(self, message: str, error_type: str | None = None) -> None:
         pass
 

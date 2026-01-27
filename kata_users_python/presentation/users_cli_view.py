@@ -18,20 +18,14 @@ class UserCLIView(UsersView):
     def show_message(self, message: str) -> None:
         print(message)
 
-    def show_hello_message(self) -> None:
-        print("Hello world!")
-
-    def show_exit_message(self) -> None:
-        return print("Bye bye...")
-
     def show_error(self, message: str, error_type: str | None = None) -> None:
         print("[Error] -", message)
 
     def start_loading(self) -> None:
-        print("Loading...")
+        print("Loading... \n")
 
     def stop_loading(self) -> None:
-        print("Stop loading")
+        print("Stop loading\n")
 
     def show_main_options(self) -> str:
         print("\nOptions:")
@@ -45,11 +39,20 @@ class UserCLIView(UsersView):
         return input("> ")
 
     def render_users(self, users: list[User]) -> None:
-        for index, user in enumerate(users):
-            print(f"{index} - {user.name.root}, {user.email.root}")
+        for _, user in enumerate(users):
+            self.render_user(user)
 
     def render_user(self, user: User) -> None:
-        print(f"- {user.name.root}, {user.email.root}")
+        print(
+            "----\n"
+            f"Name    : {user.name.root}\n"
+            f"Email   : {user.email.root}\n"
+            "Address :\n"
+            f"  Street: {user.address.address}\n"
+            f"  City  : {user.address.city}\n"
+            f"  ZIP   : {user.address.zip}"
+            "\n"
+        )
 
     def ask_input(self, key: str) -> str:
         return input(f"{key}: ")
